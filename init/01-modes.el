@@ -190,31 +190,7 @@
 ; (require 'prolog)
 ; (setq prolog-system 'swi)
 
-(defun my-use-paredit ()
-  (paredit-mode +1))
-;; via http://emacswiki.org/emacs/ParEdit
-(autoload 'paredit-mode "paredit"
-   "Minor mode for pseudo-structurally editing Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       'my-use-paredit)
-(add-hook 'lisp-mode-hook             'my-use-paredit)
-(add-hook 'lisp-interaction-mode-hook 'my-use-paredit)
-; (add-hook 'scheme-mode-hook           'my-use-paredit)
-(add-hook 'clojure-mode-hook          'my-use-paredit)
-; (add-hook 'nrepl-repl-mode-hook       'my-use-paredit)
-; (add-hook 'cider-mode-hook            'my-use-paredit)
-(add-hook 'ielm-mode-hook             'my-use-paredit)
-
-(autoload 'rainbow-delimiters "rainbow-delimiters")
-(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-
-;; Eldoc FTW
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-; (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
-; http://www.emacswiki.org/emacs/AnsiColor
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(setq auto-mode-alist
 
 ; (require 'tbemail)
 
