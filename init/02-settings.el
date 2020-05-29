@@ -91,6 +91,7 @@
 
 ;; https://twitter.com/EmacsHaiku/status/373514565222285312
 ;(inhibit-startup-screen t)
+
 ;; via http://www.emacswiki.org/emacs/PopularOptions
 (file-name-shadow-mode t)
 ;; (confirm-kill-emacs t)
@@ -105,8 +106,27 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
-; (require 'epa-file)
-; (epa-file-enable)
-
 ;; https://news.ycombinator.com/item?id=21641255
 (setq-default garbage-collection-messages t)
+
+;; via https://sanemacs.com/sanemacs
+(setq ring-bell-function 'ignore)         ; Disable bell sound
+(show-paren-mode 1)                       ; Show closing parens by default
+(setq linum-format "%4d ")                ; Prettify line number format
+(add-hook 'prog-mode-hook                 ; Show line numbers in programming modes
+          (if (fboundp 'display-line-numbers-mode)
+              #'display-line-numbers-mode
+            #'linum-mode))
+
+;;; Avoid littering the user's filesystem with backups
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '((".*" . "~/.emacs.d/saves/"))    ; don't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)       ; use versioned backups
+
+;;; Lockfiles unfortunately cause more pain than benefit
+(setq create-lockfiles nil)
