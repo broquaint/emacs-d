@@ -14,6 +14,10 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+;; Nice simple modeline. Does what it says on the tin.
+(require 'simple-modeline)
+(simple-modeline-mode 1)
+
 ;; (with-eval-after-load 'lsp-mode
 ;;   (require 'lsp-intellij)
 ;;   (add-hook 'java-mode-hook #'lsp-intellij-enable)
