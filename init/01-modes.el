@@ -195,6 +195,8 @@
 ; (setq prolog-system 'swi)
 
 (setq auto-mode-alist
+      (append '(("\\.mal$" . clojure-mode))
+              auto-mode-alist))
 
 ; (require 'tbemail)
 
