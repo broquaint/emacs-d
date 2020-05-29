@@ -33,3 +33,15 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (add-hook 'rust-mode 'electric-pair-mode)
+
+;; via https://endlessparentheses.com/ansi-colors-in-the-compilation-buffer-output.html
+(require 'ansi-color)
+
+(let ((colorize-compilation (lambda ()
+                              "Colorize from `compilation-filter-start' to `point'."
+                              (let ((inhibit-read-only t))
+                                (ansi-color-apply-on-region
+                                 compilation-filter-start (point))))))
+  (add-hook 'compilation-filter-hook
+            colorize-compilation))
+
