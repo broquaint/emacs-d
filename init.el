@@ -9,7 +9,7 @@
 ;; And have it per system as different places have different customizations.
 (setq custom-file (concat "~/.emacs.d/init/custom/" system-name ".el"))
 (if (file-exists-p custom-file)
- (load custom-file))
+ (load custom-file nil t))
 
 ;; Ensure all packages that have been manually installed remain installed.
 (mapcar
