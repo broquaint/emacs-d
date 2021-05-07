@@ -18,11 +18,8 @@
 (require 'simple-modeline)
 (simple-modeline-mode 1)
 
-;; (with-eval-after-load 'lsp-mode
-;;   (require 'lsp-intellij)
-;;   (add-hook 'java-mode-hook #'lsp-intellij-enable)
-;;   (require 'lsp-ui)
-;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+(require 'lua-mode)
+(add-to-list 'auto-mode-alist '("\\.p8\\'" . lua-mode))
 
 ; (require 'groovy-mode)
 ; (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
