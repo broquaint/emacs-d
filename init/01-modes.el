@@ -86,59 +86,12 @@
   (interactive)
   (cperl-perldoc buffer-file-name))
 
-;; (require 'pod-mode)
-;; (add-to-list 'auto-mode-alist '("\\.pod$" . pod-mode))
-;; (add-hook 'pod-mode-hook 'font-lock-mode)
-
-;; XXX Disabled for Venda code, enable when it compiles or a workaround is figured out.
-;;(add-hook 'cperl-mode-hook
-;;	  (lambda () (flymake-mode 1)))
-
-;; via https://github.com/rafl/dotemacs/blob/master/40-cperl-mode.el
-;; (defadvice flymake-perl-init (around flymake-eproject-perl5lib)
-;;   (let* ((project-root (ignore-errors (eproject-maybe-turn-on)))
-;;          (ret ad-do-it)
-;;          (args (cadr ret)))
-;;     (when project-root
-;;       (setcdr ret (list (cons (concat "-I" project-root "lib") args))))
-;;     ret))
-
-;; (ad-activate 'flymake-perl-init)
-
-;; (require 'tt-mode)
-;; (setq auto-mode-alist
-;;   (append '(("\\.tt$" . tt-mode))  auto-mode-alist ))
-;; (setq auto-mode-alist
-;;   (append '(("\\.tt2$" . tt-mode))  auto-mode-alist ))
-
 ;; for ruby-mode-hook
 (require 'ruby-mode)
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-; (require 'rvm)
-
-;; Adds its own ruby-mode-hook callback.
-;; (require 'ruby-end)
-;; (add-hook 'ruby-mode-hook
-;;           #'(lambda()
-;;               ; (rvm-use-default) - Fails horribly in the face of non-defaults!
-;;               (setq ruby-indent-level 2)
-;;               (make-variable-buffer-local 'compilation-error-regexp-alist)
-;;               (setq compilation-error-regexp-alist 
-;;                     (append compilation-error-regexp-alist 
-;;                             (list (list  
-;;                                    (concat "\\(.*?\\)\\([0-9A-Za-z_./\:-]+\\.rb\\):\\([0-9]+\\)") 2 3))))
-;;               (make-variable-buffer-local 'compile-command)
-;;               (setq compile-command (concat "ruby " (buffer-file-name) " "))
-;;               ;; Sane post-parent indenting via https://gist.github.com/fujin/5173680
-;;               (setq ruby-deep-indent-paren nil)))
-
-;; (defun my-ruby-to-new-hash-style (r-begin r-end)
-;;   (interactive "r")
-;;   (perform-replace ":\\([a-z]+\\) =>" "\\1:" nil t nil nil nil r-begin r-end)
-;;   (align r-begin r-end))
 
 (require 'markdown-mode)
 ; Why this isn't a default is beyond me.
@@ -156,9 +109,8 @@
                              (setq web-mode-disable-auto-pairing nil)))
 
 (require 'js2-mode)
-; This doesn't seem to work.
-; (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(setq-default js2-basic-offset 2)
 ;; via https://www.emacswiki.org/emacs/Js2Mode#toc4
 (add-hook 'js2-post-parse-callbacks
           (lambda ()
@@ -233,3 +185,6 @@
 ;; This creates a lock and emacs fights itself for the file, it gets
 ;; very annoying having a forced s/p/q prompt frequently.
 (add-hook 'persistent-scratch-autosave-mode-hook 'persistent-scratch--turn-autosave-off)
+
+;; Go to the end of *Compilation* output.
+(setq compilation-scroll-output t)
