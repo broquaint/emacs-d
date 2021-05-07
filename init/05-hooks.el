@@ -42,6 +42,7 @@
                               (let ((inhibit-read-only t))
                                 (ansi-color-apply-on-region
                                  compilation-filter-start (point))))))
-  (add-hook 'compilation-filter-hook
-            colorize-compilation))
+  (progn
+    (add-hook 'compilation-filter-hook colorize-compilation)
+    (add-hook 'shell-command-with-editor-mode-hook colorize-compilation)))
 

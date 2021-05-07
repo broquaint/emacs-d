@@ -87,6 +87,16 @@
 ;; I don't write mail using Emacs (yet).
 (global-unset-key (kbd "C-x m"))
 
+;; Assumes the Compilation buffer has been setup already.
+(defun my-quick-rerun ()
+  (interactive)
+  (progn
+    ;; Don't prompt to save the current file, just recompile.
+    (setq buffer-save-without-query t)
+    (recompile)))
+(global-unset-key (kbd "C-\\"))
+(global-set-key (kbd "C-\\") 'my-quick-rerun)
+
 (defun join-region (beg end)
   "Apply join-line over region."
   (interactive "r")

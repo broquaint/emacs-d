@@ -28,6 +28,18 @@
 
 (require 'calc)
 (define-key calc-mode-map (kbd "#") 'calcDigit-start)
+
+(require 'flycheck-kotlin)
+(add-hook 'kotlin-mode-hook 'flycheck-mode)
+
+(defun my-mal-build ()
+  (interactive)
+  (let ((default-directory "/Users/dbrook/dev/mal")
+        (compile-command "make test^rust^stepA"))
+    (compile)))
+
+(setq org-reveal-root "file:///Users/dbrook/repos/reveal.js")
+
 ;; via https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-composition-char-table
 (when (window-system)
   (set-frame-font "Fira Code"))
