@@ -87,6 +87,10 @@
 ;; I don't write mail using Emacs (yet).
 (global-unset-key (kbd "C-x m"))
 
+;; I don't want a key chord for killing a buffer, have hit it accidentally already.
+(global-unset-key (kbd "s-&"))
+(global-unset-key (kbd "s-k"))
+
 ;; Assumes the Compilation buffer has been setup already.
 (defun my-quick-rerun ()
   (interactive)

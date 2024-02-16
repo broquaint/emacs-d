@@ -1,9 +1,5 @@
-(require 'package)
-;; (add-to-list 'package-archives
-;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
 
 ;; Have managed customizations live in a separate file.
 ;; And have it per system as different places have different customizations.
