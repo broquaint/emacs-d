@@ -1,7 +1,6 @@
 ;; General settings
 ; (iswitchb-mode t)
-(blink-cursor-mode t)
-(show-paren-mode t)
+; (blink-cursor-mode t)
 
 ;; Have *scatch* be empty
 (setq initial-scratch-message nil)
@@ -21,10 +20,11 @@
 
 (setq-default transient-mark-mode t)
 
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
 ;; No tabs please! http://www.emacswiki.org/emacs/NoTabs
 (setq-default indent-tabs-mode nil)
+
+;; via https://www.masteringemacs.org/article/whats-new-in-emacs-28-1
+(setq-default completions-detailed t)
 
 ;; uniq buffer names.
 (require 'uniquify) 
@@ -49,13 +49,21 @@
 ;; via http://twitter.com/emacs_knight/statuses/151214372214157312
 (setq echo-keystrokes 0.1)
 
-(load-theme 'molokai t)
+; (load-theme 'molokai t)
+(load-theme 'monokai-pro t)
+;; Make the focused window lighter than the dimmed window
+(set-background-color "#232120")
 
 (require 'auto-dim-other-buffers)
 ;; As recommended by the docs.
 (add-hook 'after-init-hook (lambda ()
                              (when (fboundp 'auto-dim-other-buffers-mode)
                                (auto-dim-other-buffers-mode t))))
+
+(require 'mood-line)
+(mood-line-mode)
+(setq mood-line-format mood-line-format-default-extended)
+(setq mood-line-glyph-alist mood-line-glyphs-fira-code)
 
 ;; TODO - Have this DTRT in server mode.
 
@@ -84,13 +92,10 @@
       (global-set-key "\C-x\C-c\C-c\C-c" 'save-buffers-kill-terminal)))
 
 ;; Turn on highlighting globally
-(global-font-lock-mode t)
+; (global-font-lock-mode t)
 
 ;; column numbering
-(column-number-mode t)
-
-;; https://twitter.com/EmacsHaiku/status/373514565222285312
-;(inhibit-startup-screen t)
+; (column-number-mode t)
 
 ;; via http://www.emacswiki.org/emacs/PopularOptions
 (file-name-shadow-mode t)
@@ -98,7 +103,8 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+;; (defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 
 ;; Clearing out a buffer can be super handy e.g *scratch* type buffers.
 (put 'erase-buffer 'disabled nil)
@@ -107,7 +113,8 @@
 (set-default-coding-systems 'utf-8)
 
 ;; https://news.ycombinator.com/item?id=21641255
-(setq-default garbage-collection-messages t)
+; I find this more annoying than useful
+; (setq-default garbage-collection-messages t)
 
 ;; via https://sanemacs.com/sanemacs
 (setq ring-bell-function 'ignore)         ; Disable bell sound
@@ -128,5 +135,8 @@
    kept-old-versions 2
    version-control t)       ; use versioned backups
 
-;;; Lockfiles unfortunately cause more pain than benefit
+;; Lockfiles unfortunately cause more pain than benefit
 (setq create-lockfiles nil)
+
+;; Makes "error"/highlighted messages more visible.
+(setq next-error-message-highlight t)

@@ -42,8 +42,7 @@
 ; (global-set-key (kbd "C-c g g") 'git-gutter:toggle)
 
 ;; Should probably make projectile do this somehow.
-(global-set-key (kbd "C-c v g") 'vc-git-grep)
-(global-set-key (kbd "C-c g f") 'grep-for-method-calls)
+; (global-set-key (kbd "C-c v g") 'vc-git-grep)
 
 ;; Use a prefix as emacs doesn't understand Modifier + arrow in terminals.
 ;; That can be fixed with more code but this WFM.

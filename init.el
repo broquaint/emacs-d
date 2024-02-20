@@ -23,4 +23,4 @@
 (let ((system-init (concat "~/.emacs.d/init/" system-name ".el")))
  (when (file-exists-p system-init)
    (load system-init)))
-(put 'erase-buffer 'disabled nil)
+

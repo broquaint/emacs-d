@@ -8,6 +8,8 @@
 ;; Just make the directory already.
 (add-hook 'before-save-hook 'my-mkdir-at-before-save)
 
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
 

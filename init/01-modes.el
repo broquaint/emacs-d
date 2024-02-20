@@ -15,8 +15,8 @@
 (ido-mode 1)
 
 ;; Nice simple modeline. Does what it says on the tin.
-(require 'simple-modeline)
-(simple-modeline-mode 1)
+;; (require 'simple-modeline)
+;; (simple-modeline-mode 1)
 
 (require 'lua-mode)
 (add-to-list 'auto-mode-alist '("\\.p8\\'" . lua-mode))
@@ -111,17 +111,6 @@
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq-default js2-basic-offset 2)
-;; via https://www.emacswiki.org/emacs/Js2Mode#toc4
-(add-hook 'js2-post-parse-callbacks
-          (lambda ()
-            (when (> (buffer-size) 0)
-              (let ((btext (replace-regexp-in-string
-                            ": *true" " "
-                            (replace-regexp-in-string "[\n\t ]+" " " (buffer-substring-no-properties 1 (buffer-size)) t t))))
-                (mapc (apply-partially 'add-to-list 'js2-additional-externs)
-                      (split-string
-                       (if (string-match "/\\* *global *\\(.*?\\) *\\*/" btext) (match-string-no-properties 1 btext) "")
-                       " *, *" t))))))
 
 (require 'nodejs-repl)
 ;; (setq nodejs-repl-command "~/apps/bin/node")
@@ -146,27 +135,6 @@
 (setq auto-mode-alist
       (append '(("\\.mal$" . clojure-mode))
               auto-mode-alist))
-
-; (require 'tbemail)
-
-; (require 'textile-minor-mode)
-; (add-to-list 'auto-mode-alist '("itsalltext/support.*\\.txt$" . textile-minor-mode))
-
-;; XXX When the .txt file loads everything is fine but if I go to edit
-;; ~/.emacs I start seeing errors, no idea why ;_;
-; (require 'moinmoin-mode)
-;; This colour only availble in GUI mode.
-; (set-face-foreground 'moinmoin-url  "royal blue")
-; (set-face-foreground 'moinmoin-url-title  "royal blue")
-; (add-to-list 'auto-mode-alist '("itsalltext/docs.*\\.txt$" . moinmoin-mode))
-
-; (require 'ack-and-a-half)
-;; I often only want to search sub-directories.
-;; XXX Should probably extend to make this optional somehow.
-; (setq ack-and-a-half-prompt-for-directory t)
-
-;; Installed this by hand, it's only on MELPA which I don't want to go near.
-; (require 'git-timemachine)
 
 (require 'tramp)
 (setq tramp-default-method "ssh")
